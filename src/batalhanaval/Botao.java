@@ -11,17 +11,17 @@ public class Botao extends JButton{
     public Botao(){
         initButton();        
     }   
-    
     private void initButton() {
-        this.setPreferredSize(new Dimension(35, 35));
+        this.setPreferredSize(new Dimension(75, 75));
         this.setFont(new Font("Calibri", 1, 25));
         this.setFocusPainted(false);        
-        this.setBackground(Color.black);        
+        this.setBackground(Color.black);
         this.addMouseListener(new MouseAdapter(){            
             @Override            
             public void mousePressed(MouseEvent e){
                 
             }            
         });
+        
     }
 }
