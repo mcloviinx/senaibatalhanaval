@@ -1,9 +1,9 @@
 package batalhanaval;
-
+import leoteste.jFrame;
 public class Batalhanaval {
 
     public static void main(String[] args) {
-        jframePrinc frame = new jframePrinc();
+        jFrame frame = new jFrame();
     }
     
 }
