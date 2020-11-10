@@ -18,6 +18,7 @@ public class Frame extends JFrame{
         jogadorPanel jogador2 = new jogadorPanel();
         painel.add(jogador1, BorderLayout.WEST);
         painel.add(jogador2, BorderLayout.EAST);
+        painel.add(new Infor(), BorderLayout.CENTER);
         
         pack();
         setExtendedState(MAXIMIZED_BOTH);
