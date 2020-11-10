@@ -13,7 +13,7 @@ public class Botao extends JButton{
     }   
     
     private void initButton() {
-        this.setPreferredSize(new Dimension(25, 25));
+        this.setPreferredSize(new Dimension(35, 35));
         this.setFont(new Font("Calibri", 1, 25));
         this.setFocusPainted(false);        
         this.setBackground(Color.black);        
