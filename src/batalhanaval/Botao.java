@@ -13,11 +13,14 @@ public class Botao extends JButton{
     boolean navio = false;
     boolean clicado = false;
     Color shipColor = null;
+    jogadorPanel jogador;
     private final ImageIcon miraIcon = new ImageIcon(Class.class.getResource("/png/mira25.png"));
     private final ImageIcon erroIcon = new ImageIcon(Class.class.getResource("/png/erro25.png"));
+    private final ImageIcon stopIcon = new ImageIcon(Class.class.getResource("/png/stop25.png"));
     
-    public Botao(){
-        initButton();        
+    public Botao(jogadorPanel jogador){
+        initButton(); 
+        this.jogador = jogador;
     }   
     private void initButton() {
         this.setPreferredSize(new Dimension(45, 45));
@@ -25,22 +28,28 @@ public class Botao extends JButton{
         this.setFocusPainted(false);
         this.setBackground(new Color(0, 105, 148));
         this.setBorder(BorderFactory.createEtchedBorder());
-        this.addMouseListener(new MouseAdapter(){            
+        this.addMouseListener(new MouseAdapter(){
             @Override            
             public void mousePressed(MouseEvent e){
-                clicado = true;
-                if (navio){
-                    setBackground(shipColor);
-                    setIcon(null);
-                } else {
-                    //setBackground();
-                    setIcon(erroIcon);
+                if (jogador.enabled){
+                    clicado = true;
+                    if (navio){
+                        setBackground(shipColor);
+                        setIcon(null);
+                    } else {
+                        jogador.updateOpc();
+                        setIcon(erroIcon);
+                    }
                 }
             }
             @Override
             public void mouseEntered(MouseEvent e){
                 if (!clicado){
-                    setIcon(miraIcon);
+                    if (jogador.enabled){
+                        setIcon(miraIcon);
+                    } else {
+                        setIcon(stopIcon);
+                    }
                 }
             }
             @Override
