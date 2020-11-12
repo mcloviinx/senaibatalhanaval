@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.util.Random;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -13,8 +14,10 @@ public class jogadorPanel extends JPanel{
     int linhas = 10; //numero de linhas
     int colunas = 10; //numero de colunas
     Botao[][] botao = new Botao[linhas][colunas]; //criando o array em matrix que irá receber todos os botões do painel
+    
     public jogadorPanel(){
         iniciarPanel(); //chamando metodo que configura o panel
+        gerarNavios();
     }
     private void iniciarPanel(){
         setBackground(Color.gray);
@@ -56,6 +59,47 @@ public class jogadorPanel extends JPanel{
         }
     }
     private void gerarNavios(){
+        Random random = new Random();
         
+        int ix = random.nextInt(linhas);
+        int iy = random.nextInt(colunas);
+        //botao[ix][iy].setBackground(Color.red);
+        int orientOpc = 0; //random.nextInt(4);
+        int shipSize = 4;
+        
+        switch (orientOpc){
+            default:
+                if (ix >= shipSize - 1){
+                    boolean colide = false;
+                    int[] indexs = new int[shipSize];
+                    int count = 0;
+                    for (int i = ix; i > ix - shipSize; i--){
+                        if (botao[i][iy].navio) {
+                            colide = true;
+                            break;
+                        } else {
+                            indexs[count] = i;
+                        }
+                        count++;
+                    }
+                    if (!colide){
+                        for (int i = 0; i < indexs.length; i++){
+                            botao[indexs[i]][iy].isShip();
+                            botao[indexs[i]][iy].setBackground(Color.green);
+                            
+                        }
+                    }
+                }
+            break;
+            case 1:
+                
+            break;
+            case 2:
+                
+            break;
+            case 3:
+                
+            break;
+        }
     }
 }
