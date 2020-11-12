@@ -17,6 +17,7 @@ public class Botao extends JButton{
     private final ImageIcon miraIcon = new ImageIcon(Class.class.getResource("/png/mira25.png"));
     private final ImageIcon erroIcon = new ImageIcon(Class.class.getResource("/png/erro25.png"));
     private final ImageIcon stopIcon = new ImageIcon(Class.class.getResource("/png/stop25.png"));
+    private final ImageIcon backIcon = new ImageIcon(Class.class.getResource("/png/back40.png"));
     
     public Botao(jogadorPanel jogador){
         initButton(); 
@@ -27,6 +28,7 @@ public class Botao extends JButton{
         this.setFont(new Font("Calibri", 1, 25));
         this.setFocusPainted(false);
         this.setBackground(new Color(0, 105, 148));
+        this.setIcon(backIcon);
         this.setBorder(BorderFactory.createEtchedBorder());
         this.addMouseListener(new MouseAdapter(){
             @Override            
@@ -35,6 +37,7 @@ public class Botao extends JButton{
                     clicado = true;
                     if (navio){
                         setBackground(shipColor);
+                        jogador.updateDest();
                         setIcon(null);
                     } else {
                         jogador.updateOpc();
@@ -55,7 +58,7 @@ public class Botao extends JButton{
             @Override
             public void mouseExited(MouseEvent e){
                 if (!clicado){
-                    setIcon(null);
+                    setIcon(backIcon);
                 }
             }
         });
