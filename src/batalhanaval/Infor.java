@@ -40,11 +40,9 @@ public class Infor extends javax.swing.JPanel {
         button4 = new java.awt.Button();
         button5 = new java.awt.Button();
         button6 = new java.awt.Button();
-        button7 = new java.awt.Button();
         button8 = new java.awt.Button();
         button9 = new java.awt.Button();
         button10 = new java.awt.Button();
-        button11 = new java.awt.Button();
         button12 = new java.awt.Button();
         jPanel2 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
@@ -115,7 +113,6 @@ public class Infor extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
         jPanel1.add(jLabel6, gridBagConstraints);
 
-        button1.setActionCommand("");
         button1.setBackground(new java.awt.Color(0, 153, 0));
         button1.setEnabled(false);
         button1.setForeground(new java.awt.Color(204, 0, 0));
@@ -127,7 +124,6 @@ public class Infor extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(0, 19, 6, 0);
         jPanel1.add(button1, gridBagConstraints);
-        button1.getAccessibleContext().setAccessibleName("");
 
         button2.setBackground(new java.awt.Color(204, 102, 0));
         button2.setEnabled(false);
@@ -193,18 +189,6 @@ public class Infor extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 6, 0);
         jPanel1.add(button6, gridBagConstraints);
 
-        button7.setBackground(new java.awt.Color(204, 0, 0));
-        button7.setEnabled(false);
-        button7.setForeground(new java.awt.Color(204, 0, 0));
-        button7.setPreferredSize(new java.awt.Dimension(20, 20));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 9;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.ipadx = 4;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 6, 0);
-        jPanel1.add(button7, gridBagConstraints);
-
         button8.setBackground(new java.awt.Color(0, 0, 153));
         button8.setEnabled(false);
         button8.setForeground(new java.awt.Color(204, 0, 0));
@@ -242,17 +226,6 @@ public class Infor extends javax.swing.JPanel {
         gridBagConstraints.ipadx = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         jPanel1.add(button10, gridBagConstraints);
-
-        button11.setBackground(new java.awt.Color(0, 0, 153));
-        button11.setEnabled(false);
-        button11.setForeground(new java.awt.Color(204, 0, 0));
-        button11.setPreferredSize(new java.awt.Dimension(20, 20));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 10;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.ipadx = 4;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        jPanel1.add(button11, gridBagConstraints);
 
         button12.setBackground(new java.awt.Color(0, 0, 153));
         button12.setEnabled(false);
@@ -389,14 +362,12 @@ public class Infor extends javax.swing.JPanel {
     private javax.swing.JButton bt_sairjg;
     private java.awt.Button button1;
     private java.awt.Button button10;
-    private java.awt.Button button11;
     private java.awt.Button button12;
     private java.awt.Button button2;
     private java.awt.Button button3;
     private java.awt.Button button4;
     private java.awt.Button button5;
     private java.awt.Button button6;
-    private java.awt.Button button7;
     private java.awt.Button button8;
     private java.awt.Button button9;
     private javax.swing.JLabel jLabel1;
