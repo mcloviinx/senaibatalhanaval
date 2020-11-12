@@ -5,8 +5,10 @@ import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Random;
+import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -18,16 +20,17 @@ public class jogadorPanel extends JPanel{
     boolean enabled;
     Botao[][] botao = new Botao[linhas][colunas]; //criando o array em matrix que irá receber todos os botões do painel
     ArrayList<Botao> allShips = new ArrayList<>();
-    
-    public jogadorPanel(Frame frame){
+    JLabel label;
+    public jogadorPanel(Frame frame, JLabel label){
         iniciarPanel(); //chamando metodo que configura o panel
         gerarNavios();
         this.frame = frame;
+        this.label = label;
     }
     private void iniciarPanel(){
         setBackground(Color.gray);
         setLayout(new GridBagLayout());
-        
+        setBorder(BorderFactory.createLineBorder(Color.black, 2));
         for (int x = 0; x < linhas; x++){
             for (int y = 0; y < colunas; y++){
                 // criando todos os objetos botao no array;
@@ -44,14 +47,17 @@ public class jogadorPanel extends JPanel{
         for (int i = 1; i <= linhas; i++){ //laço para colocar a guia de numeros
             gbc.gridx = i;
             gbc.gridy = 0;
-            
-            add(new JLabel(String.valueOf(i)), gbc);
+            JLabel text = new JLabel(String.valueOf(i));
+            text.setForeground(new Color(255, 255, 255));
+            add(text, gbc);
         }
         char a = 'A';
         for (int i = 1; i <= colunas; i++){ //laço para colocar a guia de letras
             gbc.gridx = 0;
             gbc.gridy = i;
-            add(new JLabel(String.valueOf(a)), gbc);
+            JLabel text = new JLabel(String.valueOf(a));
+            text.setForeground(new Color(255, 255, 255));
+            add(text, gbc);
             a++;
         }
         gbc.insets = new Insets(0, 0, 0, 0);
@@ -64,10 +70,10 @@ public class jogadorPanel extends JPanel{
         }
     }
     private void gerarNavios(){
-        genTipoNavio(4, 2, new Color(0,0,139)); // porta-aviões
-        genTipoNavio(3, 3, new Color(255,0,0)); 
+        genTipoNavio(5, 3, new Color(0,0,139)); // porta-aviões
+        genTipoNavio(4, 3, new Color(255,0,0)); 
         genTipoNavio(2, 4, new Color(255,140,0));
-        genTipoNavio(1, 4, new Color(0,128,0));
+        genTipoNavio(1, 6, new Color(0,128,0));
     }
     private void genTipoNavio(int shipSize, int shipMax, Color cor){
         int shipCount = 0;
@@ -164,15 +170,16 @@ public class jogadorPanel extends JPanel{
         }
     }
     public String porcDestruicao(){
-        String porc;
         int clickedCount = 0;
         int all = allShips.size();
         for (int i = 0; i < all; i++){
             if (allShips.get(i).clicado) clickedCount++;
         }
-        porc = (Float.toString(clickedCount / all * 100));
-        return porc;
+        Float num = Float.valueOf(clickedCount) / Float.valueOf(all) * 100;
+        DecimalFormat df = new DecimalFormat("###.#");
+        return df.format(num) + "%";
     }
+    
     public void updateOpc(){
         frame.updateVezJogador();
     }
@@ -180,8 +187,14 @@ public class jogadorPanel extends JPanel{
         return frame.vezjogador;
     }
     public void setPanelEnabled(boolean b){
-        if (b) setBackground(Color.black);
-                else setBackground(Color.gray);
         enabled = b;
+        if (enabled) {
+            setBackground(new Color(55, 111, 140));
+        } else {
+            setBackground(Color.gray);
+        }
+    }
+    public void updateDest(){
+        label.setText(porcDestruicao());
     }
 }
