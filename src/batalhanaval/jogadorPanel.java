@@ -59,10 +59,10 @@ public class jogadorPanel extends JPanel{
         }
     }
     private void gerarNavios(){
-        genTipoNavio(4, 2, new Color(255, 0, 0)); // porta-aviões
-        genTipoNavio(3, 3, Color.green); 
-        genTipoNavio(2, 4, Color.yellow);
-        genTipoNavio(1, 4, Color.PINK);
+        genTipoNavio(4, 2, new Color(0,0,139)); // porta-aviões
+        genTipoNavio(3, 3, new Color(255,0,0)); 
+        genTipoNavio(2, 4, new Color(255,140,0));
+        genTipoNavio(1, 4, new Color(0,128,0));
     }
     private void genTipoNavio(int shipSize, int shipMax, Color cor){
         int shipCount = 0;
