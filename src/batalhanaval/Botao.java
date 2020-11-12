@@ -21,7 +21,7 @@ public class Botao extends JButton{
     private void initButton() {
         this.setPreferredSize(new Dimension(45, 45));
         this.setFont(new Font("Calibri", 1, 25));
-        this.setFocusPainted(false);        
+        this.setFocusPainted(false);
         this.setBackground(new Color(0, 105, 148));
         this.setBorder(BorderFactory.createEtchedBorder());
         this.addMouseListener(new MouseAdapter(){            
@@ -30,7 +30,8 @@ public class Botao extends JButton{
                 clicado = true;
                 if (navio){
                     
-                } else {              
+                } else {
+                    //setBackground();
                     setIcon(erroIcon);
                 }
             }
@@ -47,5 +48,8 @@ public class Botao extends JButton{
                 }
             }
         });
+    }
+    public void isShip(){
+        navio = true;
     }
 }
