@@ -12,6 +12,7 @@ import javax.swing.JButton;
 public class Botao extends JButton{
     boolean navio = false;
     boolean clicado = false;
+    Color shipColor = null;
     private final ImageIcon miraIcon = new ImageIcon(Class.class.getResource("/png/mira25.png"));
     private final ImageIcon erroIcon = new ImageIcon(Class.class.getResource("/png/erro25.png"));
     
@@ -29,7 +30,8 @@ public class Botao extends JButton{
             public void mousePressed(MouseEvent e){
                 clicado = true;
                 if (navio){
-                    
+                    setBackground(shipColor);
+                    setIcon(null);
                 } else {
                     //setBackground();
                     setIcon(erroIcon);
@@ -51,5 +53,8 @@ public class Botao extends JButton{
     }
     public void isShip(){
         navio = true;
+    }
+    public void setShipColor(Color shipColor){
+        this.shipColor = shipColor;
     }
 }
