@@ -59,47 +59,93 @@ public class jogadorPanel extends JPanel{
         }
     }
     private void gerarNavios(){
-        Random random = new Random();
-        
-        int ix = random.nextInt(linhas);
-        int iy = random.nextInt(colunas);
-        //botao[ix][iy].setBackground(Color.red);
-        int orientOpc = 0; //random.nextInt(4);
-        int shipSize = 4;
-        
-        switch (orientOpc){
-            default:
-                if (ix >= shipSize - 1){
-                    boolean colide = false;
-                    int[] indexs = new int[shipSize];
-                    int count = 0;
-                    for (int i = ix; i > ix - shipSize; i--){
-                        if (botao[i][iy].navio) {
-                            colide = true;
-                            break;
-                        } else {
-                            indexs[count] = i;
+        genTipoNavio(4, 2, Color.red); // porta-aviões
+        genTipoNavio(3, 3, Color.green); 
+        genTipoNavio(2, 4, Color.yellow);
+        genTipoNavio(1, 4, Color.PINK);
+    }
+    private void genTipoNavio(int shipSize, int shipMax, Color cor){
+        int shipCount = 0;
+        while (shipCount < shipMax){
+            Random random = new Random();
+            int ix = random.nextInt(linhas);
+            int iy = random.nextInt(colunas);            
+            int orientOpc = random.nextInt(4);
+            System.out.println(orientOpc);
+            switch (orientOpc){
+                default:
+                    if (ix >= shipSize - 1){
+                        boolean colide = false;
+                        for (int i = ix; i > ix - shipSize; i--){
+                            if (botao[i][iy].navio) {
+                                colide = true;
+                                break; //break para o for não para o switch (possivel problema)!
+                            }                        
                         }
-                        count++;
-                    }
-                    if (!colide){
-                        for (int i = 0; i < indexs.length; i++){
-                            botao[indexs[i]][iy].isShip();
-                            botao[indexs[i]][iy].setBackground(Color.green);
-                            
+                        if (!colide){
+                            for (int i = ix; i > ix - shipSize; i--){
+                                botao[i][iy].isShip();
+                                botao[i][iy].setBackground(cor);
+                            }
+                            shipCount++;
                         }
                     }
-                }
-            break;
-            case 1:
-                
-            break;
-            case 2:
-                
-            break;
-            case 3:
-                
-            break;
+                break;
+                case 1:
+                    if (iy + shipSize <= linhas){
+                        boolean colide = false;
+                        for (int i = iy; i < iy + shipSize; i++){
+                            if (botao[ix][i].navio) {
+                                colide = true;
+                                break; //break para o for não para o switch (possivel problema)!
+                            }                        
+                        }
+                        if (!colide){
+                            for (int i = iy; i < iy + shipSize; i++){
+                                botao[ix][i].isShip();
+                                botao[ix][i].setBackground(cor);
+                            }
+                            shipCount++;
+                        }
+                    }
+                break;
+                case 2:
+                    if (ix + shipSize <= colunas){
+                        boolean colide = false;
+                        for (int i = ix; i < ix + shipSize; i++){
+                            if (botao[i][iy].navio) {
+                                colide = true;
+                                break; //break para o for não para o switch (possivel problema)!
+                            }                        
+                        }
+                        if (!colide){
+                            for (int i = ix; i < ix + shipSize; i++){
+                                botao[i][iy].isShip();
+                                botao[i][iy].setBackground(cor);
+                            }
+                            shipCount++;
+                        }
+                    }
+                break;
+                case 3:
+                    if (iy >= shipSize - 1){
+                        boolean colide = false;
+                        for (int i = iy; i > iy - shipSize; i--){
+                            if (botao[ix][i].navio) {
+                                colide = true;
+                                break; //break para o for não para o switch (possivel problema)!
+                            }                        
+                        }
+                        if (!colide){
+                            for (int i = iy; i > iy - shipSize; i--){
+                                botao[ix][i].isShip();
+                                botao[ix][i].setBackground(cor);
+                            }
+                            shipCount++;
+                        }
+                    }
+                break;
+            }
         }
     }
 }
