@@ -59,7 +59,7 @@ public class jogadorPanel extends JPanel{
         }
     }
     private void gerarNavios(){
-        genTipoNavio(4, 2, Color.red); // porta-aviões
+        genTipoNavio(4, 2, new Color(255, 0, 0)); // porta-aviões
         genTipoNavio(3, 3, Color.green); 
         genTipoNavio(2, 4, Color.yellow);
         genTipoNavio(1, 4, Color.PINK);
@@ -85,7 +85,7 @@ public class jogadorPanel extends JPanel{
                         if (!colide){
                             for (int i = ix; i > ix - shipSize; i--){
                                 botao[i][iy].isShip();
-                                botao[i][iy].setBackground(cor);
+                                botao[i][iy].setShipColor(cor);
                             }
                             shipCount++;
                         }
@@ -103,7 +103,7 @@ public class jogadorPanel extends JPanel{
                         if (!colide){
                             for (int i = iy; i < iy + shipSize; i++){
                                 botao[ix][i].isShip();
-                                botao[ix][i].setBackground(cor);
+                                botao[ix][i].setShipColor(cor);
                             }
                             shipCount++;
                         }
@@ -121,7 +121,7 @@ public class jogadorPanel extends JPanel{
                         if (!colide){
                             for (int i = ix; i < ix + shipSize; i++){
                                 botao[i][iy].isShip();
-                                botao[i][iy].setBackground(cor);
+                                botao[i][iy].setShipColor(cor);
                             }
                             shipCount++;
                         }
@@ -139,7 +139,7 @@ public class jogadorPanel extends JPanel{
                         if (!colide){
                             for (int i = iy; i > iy - shipSize; i--){
                                 botao[ix][i].isShip();
-                                botao[ix][i].setBackground(cor);
+                                botao[ix][i].setShipColor(cor);
                             }
                             shipCount++;
                         }
