@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -13,11 +14,15 @@ import javax.swing.JPanel;
 public class jogadorPanel extends JPanel{
     int linhas = 10; //numero de linhas
     int colunas = 10; //numero de colunas
+    Frame frame;
+    boolean enabled;
     Botao[][] botao = new Botao[linhas][colunas]; //criando o array em matrix que irá receber todos os botões do painel
+    ArrayList<Botao> allShips = new ArrayList<>();
     
-    public jogadorPanel(){
+    public jogadorPanel(Frame frame){
         iniciarPanel(); //chamando metodo que configura o panel
         gerarNavios();
+        this.frame = frame;
     }
     private void iniciarPanel(){
         setBackground(Color.gray);
@@ -26,7 +31,7 @@ public class jogadorPanel extends JPanel{
         for (int x = 0; x < linhas; x++){
             for (int y = 0; y < colunas; y++){
                 // criando todos os objetos botao no array;
-                botao[x][y] = new Botao();
+                botao[x][y] = new Botao(this);
             }
         
         }
@@ -66,12 +71,11 @@ public class jogadorPanel extends JPanel{
     }
     private void genTipoNavio(int shipSize, int shipMax, Color cor){
         int shipCount = 0;
+        Random random = new Random();
         while (shipCount < shipMax){
-            Random random = new Random();
             int ix = random.nextInt(linhas);
             int iy = random.nextInt(colunas);            
-            int orientOpc = random.nextInt(4);
-            System.out.println(orientOpc);
+            int orientOpc = random.nextInt(4);            
             switch (orientOpc){
                 default:
                     if (ix >= shipSize - 1){
@@ -86,6 +90,7 @@ public class jogadorPanel extends JPanel{
                             for (int i = ix; i > ix - shipSize; i--){
                                 botao[i][iy].isShip();
                                 botao[i][iy].setShipColor(cor);
+                                allShips.add(botao[i][iy]);
                             }
                             shipCount++;
                         }
@@ -104,6 +109,7 @@ public class jogadorPanel extends JPanel{
                             for (int i = iy; i < iy + shipSize; i++){
                                 botao[ix][i].isShip();
                                 botao[ix][i].setShipColor(cor);
+                                allShips.add(botao[ix][i]);
                             }
                             shipCount++;
                         }
@@ -122,6 +128,7 @@ public class jogadorPanel extends JPanel{
                             for (int i = ix; i < ix + shipSize; i++){
                                 botao[i][iy].isShip();
                                 botao[i][iy].setShipColor(cor);
+                                allShips.add(botao[i][iy]);
                             }
                             shipCount++;
                         }
@@ -140,6 +147,7 @@ public class jogadorPanel extends JPanel{
                             for (int i = iy; i > iy - shipSize; i--){
                                 botao[ix][i].isShip();
                                 botao[ix][i].setShipColor(cor);
+                                allShips.add(botao[ix][i]);
                             }
                             shipCount++;
                         }
@@ -147,5 +155,33 @@ public class jogadorPanel extends JPanel{
                 break;
             }
         }
+    }
+    public void desaBotoes(boolean opc){
+        for (int x = 0; x < linhas; x++){ 
+            for (int y = 0; y < colunas; y++){
+                botao[x][y].setEnabled(opc);
+            }
+        }
+    }
+    public String porcDestruicao(){
+        String porc;
+        int clickedCount = 0;
+        int all = allShips.size();
+        for (int i = 0; i < all; i++){
+            if (allShips.get(i).clicado) clickedCount++;
+        }
+        porc = (Float.toString(clickedCount / all * 100));
+        return porc;
+    }
+    public void updateOpc(){
+        frame.updateVezJogador();
+    }
+    public boolean getOpc(){
+        return frame.vezjogador;
+    }
+    public void setPanelEnabled(boolean b){
+        if (b) setBackground(Color.black);
+                else setBackground(Color.gray);
+        enabled = b;
     }
 }
